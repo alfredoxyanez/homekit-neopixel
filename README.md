@@ -7,9 +7,9 @@ In this project we will create and program homekit compatible lights. We will be
 We will use:
 * [Homebridge](https://github.com/nfarina/homebridge)
 * [rpi_ws281x](https://github.com/jgarff/rpi_ws281x)
-* [Paho MQTT] (https://pypi.org/project/paho-mqtt/)
-* [Neo Pixels] (https://www.adafruit.com/?q=neopixels)
-* [Raspberry Pi Zero W] (https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
+* [Paho MQTT](https://pypi.org/project/paho-mqtt/)
+* [Neo Pixels](https://www.adafruit.com/?q=neopixels)
+* [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 
 ### Prerequisites
 
