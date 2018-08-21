@@ -1,10 +1,15 @@
 # homekit-neopixel
 
-One Paragraph of project description goes here
+In this project we will create and program homekit compatible lights. We will be using a Raspberry P Zero W (I first prototypes with a RPi 3 B).
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+We will use:
+* [Homebridge](https://github.com/nfarina/homebridge)
+* [rpi_ws281x](https://github.com/jgarff/rpi_ws281x)
+* [Paho MQTT] (https://pypi.org/project/paho-mqtt/)
+* [Neo Pixels] (https://www.adafruit.com/?q=neopixels)
+* [Raspberry Pi Zero W] (https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 
 ### Prerequisites
 
