@@ -198,6 +198,7 @@ def on_message(client, userdata, msg):
             print("cycle: ", cycle)
             colorWipe2(strip1, strip2, rgbs)
         else:
+            print("cycle: ", cycle)
             cycle = False
 
     # if msg.topic == "light3/hue":
