@@ -21,7 +21,6 @@ LED_CHANNEL = 0  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 LED_CHANNEL2 = 1  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 cycle = false
 
-
 #[saturation,hue,brightness,r,g,b]
 rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255],
         [0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255]]
@@ -185,7 +184,8 @@ def on_message(client, userdata, msg):
         hue(msg, strip2, 1, rgbs)
 
     if msg.topic == "lights/random":
-        if msg.payload == "on"
+        print(msg.payload)
+        if msg.payload == "on":
             cycle = true
             colorWipe2(strip1, strip2)
         else:
