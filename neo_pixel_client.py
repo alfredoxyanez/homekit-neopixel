@@ -74,7 +74,19 @@ def colorWipe(strip, color, wait_ms=50):
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, color)
         strip.show()
-        # time.sleep(wait_ms / 1000.0)
+        time.sleep(wait_ms / 1000.0)
+
+
+def colorWipe2(strip, strip2, wait_ms=50):
+    """Wipe color across display a pixel at a time."""
+    colors = [Color(0, 255, 0), Color(255, 0, 0), Color(0, 0, 255)]
+    for color in colors:
+        for i in range(strip.numPixels()):
+            strip.setPixelColor(i, color)
+            strip2.setPixelColor(i, color)
+            strip.show()
+            strip2.show()
+            time.sleep(wait_ms / 1000.0)
 
 
 def light_status(msg, strip, rgb_index, all_rgb):
@@ -166,6 +178,9 @@ def on_message(client, userdata, msg):
         hue(msg, strip1, 0, rgbs)
     if msg.topic == "light2/hue":
         hue(msg, strip2, 1, rgbs)
+
+    if msg.topic == "lights/random":
+        colorWipe2(strip1, strip2)
     # if msg.topic == "light3/hue":
     #     hue(msg, strip3, 2, rgbs)
     # if msg.topic == "light4/hue":
