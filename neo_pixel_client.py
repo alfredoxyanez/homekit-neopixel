@@ -78,7 +78,7 @@ def light_status(msg, strip, rgb_index, all_rgb):
         colorWipe(strip,color)
     else:
         all_rgb[rgb_index][2] = 0
-    strip.setBrightness(all_rgb[rgb_index][2])
+        strip.setBrightness(all_rgb[rgb_index][2])
         strip.show()
 def brightness(msg, strip, rgb_index, all_rgb):
     print('inside bts ', rgb_index)
