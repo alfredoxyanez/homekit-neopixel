@@ -6,6 +6,7 @@ import paho.mqtt.client as mqtt
 from neopixel import *
 import colorsys
 import time
+import threading
 
 # LED strip configuration:
 LED_COUNT = 16  # Number of LED pixels.
@@ -157,9 +158,11 @@ def on_message(client, userdata, msg):
     global cycle
     print(rgbs)
     if msg.topic == "light1/status":
+        cycle = False
         light_status(msg, strip1, 0, rgbs)
     if msg.topic == "light2/status":
         print('light2')
+        cycle = False
         light_status(msg, strip2, 1, rgbs)
     # if msg.topic == "light3/status":
     #     print('light3')
@@ -196,7 +199,9 @@ def on_message(client, userdata, msg):
         if msg.payload == "on":
             cycle = True
             print("cycle: ", cycle)
-            colorWipe2(strip1, strip2, rgbs)
+            t = threading.Thread(
+                target=colorWipe2, args=(strip1, strip2, rgbs))
+            t.start()
         else:
             print("cycle: ", cycle)
             cycle = False
