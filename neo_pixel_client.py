@@ -59,6 +59,7 @@ def on_connect(client, userdata, flags, rc):
     # client.subscribe("light1/saturation")
     #Light2
     client.subscribe("light2/#")
+    client.subscribe("lights/random")
     # client.subscribe("light2/report/status")
     # client.subscribe("light2/status")
     # client.subscribe("light2/report/brightness")
