@@ -34,18 +34,18 @@ def on_connect(client, userdata, flags, rc):
     global strip3
     global strip4
 
-    strip1 = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    # strip1 = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    #                            LED_BRIGHTNESS, 0)
+    # strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    #                            LED_BRIGHTNESS, 1)
+    strip1 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 0)
-    strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
-                               LED_BRIGHTNESS, 1)
-    strip3 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT,
-                               LED_BRIGHTNESS, 0)
-    strip4 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    strip2 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 1)
     strip1.begin()
     strip2.begin()
-    strip3.begin()
-    strip4.begin()
+    # strip3.begin()
+    # strip4.begin()
     #test
     client.subscribe('test/#')
 
