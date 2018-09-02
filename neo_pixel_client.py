@@ -72,13 +72,10 @@ def light_status(msg, strip, rgb_index, all_rgb):
     if msg.payload == "true":
         print('ON status ', rgb_index)
         color = Color(all_rgb[rgb_index][4], all_rgb[rgb_index][3],all_rgb[rgb_index][5])
-    if all_rgb[rgb_index][2] == 0:
+        if all_rgb[rgb_index][2] == 0:
             all_rgb[rgb_index][2]= 100
         strip.setBrightness(all_rgb[rgb_index][2])
-    colorWipe(strip,color)
-#        for i in range(strip.numPixels()):
-#            strip.setPixelColor(i,color)
-#            strip.show()
+        colorWipe(strip,color)
     else:
         all_rgb[rgb_index][2] = 0
     strip.setBrightness(all_rgb[rgb_index][2])
