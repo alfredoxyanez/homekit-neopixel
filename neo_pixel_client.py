@@ -10,8 +10,8 @@ import threading
 
 # LED strip configuration:
 LED_COUNT = 16  # Number of LED pixels.
-# LED_PIN = 12  # GPIO pin connected to the pixels (18 uses PWM!).
-# LED_PIN2 = 13  # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
+LED_PIN = 12  # GPIO pin connected to the pixels (18 uses PWM!).
+LED_PIN2 = 13  # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_PIN3 = 18  # GPIO pin connected to the pixels (18 uses PWM!).
 LED_PIN4 = 19
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -31,21 +31,21 @@ def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
     global strip1
     global strip2
-    # global strip3
-    # global strip4
+    global strip3
+    global strip4
 
-    # strip1 = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA, LED_INVERT,
-    #                            LED_BRIGHTNESS, 0)
-    # strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
-    #                            LED_BRIGHTNESS, 1)
-    strip1 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    strip1 = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 0)
-    strip2 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+                               LED_BRIGHTNESS, 1)
+    strip3 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+                               LED_BRIGHTNESS, 0)
+    strip4 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 1)
     strip1.begin()
     strip2.begin()
-    # strip3.begin()
-    # strip4.begin()
+    strip3.begin()
+    strip4.begin()
     #test
     client.subscribe('test/#')
 
