@@ -203,8 +203,8 @@ def on_message(client, userdata, msg):
                 target=colorWipe2, args=(strip1, strip2, rgbs))
             t.start()
         else:
-            print("cycle: ", cycle)
             cycle = False
+            print("cycle: ", cycle)
 
     # if msg.topic == "light3/hue":
     #     hue(msg, strip3, 2, rgbs)
