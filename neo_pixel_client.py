@@ -187,6 +187,7 @@ def on_message(client, userdata, msg):
         print(msg.payload)
         if msg.payload == "on":
             cycle = True
+            print("cycle: ", cycle)
             colorWipe2(strip1, strip2)
         else:
             cycle = False
