@@ -30,8 +30,8 @@ def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
     global strip1
     global strip2
-    # global strip3
-    # global strip4
+    global strip3
+    global strip4
     strip1 = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 0)
     strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
@@ -74,7 +74,7 @@ def colorWipe(strip, color, wait_ms=50):
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, color)
         strip.show()
-        time.sleep(wait_ms / 1000.0)
+        # time.sleep(wait_ms / 1000.0)
 
 
 def light_status(msg, strip, rgb_index, all_rgb):
