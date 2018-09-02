@@ -23,8 +23,7 @@ LED_CHANNEL2 = 1  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 cycle = False
 
 #[saturation,hue,brightness,r,g,b]
-rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255],
-        [0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255]]
+rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255]]
 
 
 # The callback for when the client receives a CONNACK response from the server.
