@@ -80,7 +80,7 @@ def colorWipe(strip, color, wait_ms=50):
         time.sleep(wait_ms / 1000.0)
 
 
-def colorWipe2(strip, strip2, all_rgb, wait_ms=500):
+def colorWipe2(strip, strip2, all_rgb, wait_ms=100):
     """Wipe color across display a pixel at a time."""
     print("colorwipe2", cycle)
     colors = [Color(0, 255, 0), Color(255, 0, 0), Color(0, 0, 255)]
