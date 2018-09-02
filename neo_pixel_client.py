@@ -33,7 +33,7 @@ def on_connect(client, userdata, flags, rc):
     global strip2
     global strip3
     global strip4
-    global cycle
+
     strip1 = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 0)
     strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
@@ -154,6 +154,7 @@ def saturation(msg, strip, rgb_index, all_rgb):
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
     global rgbs
+    global cycle
     print(rgbs)
     if msg.topic == "light1/status":
         light_status(msg, strip1, 0, rgbs)
