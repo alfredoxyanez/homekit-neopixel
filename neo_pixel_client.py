@@ -88,22 +88,22 @@ def brightness(msg, strip, rgb_index, all_rgb):
     strip.setBrightness(all_rgb[rgb_index][2])
     strip.show()
 def hue(msg, strip, rgb_index, all_rgb):
-        all_rgb[rgb_index][1]= int(msg.payload)/360.0
-        c= colorsys.hls_to_rgb(all_rgb[rgb_index][1],.5,all_rgb[rgb_index][0])
-        all_rgb[rgb_index][3] = int(c[0]*255)
-        all_rgb[rgb_index][4] = int(c[1]*255)
-        all_rgb[rgb_index][5] = int(c[2]*255)
-        color = Color(all_rgb[rgb_index][4],all_rgb[rgb_index][3],all_rgb[rgb_index][5])
-        colorWipe(strip,color)
-        print(color, 'wipe')
+    all_rgb[rgb_index][1]= int(msg.payload)/360.0
+    c= colorsys.hls_to_rgb(all_rgb[rgb_index][1],.5,all_rgb[rgb_index][0])
+    all_rgb[rgb_index][3] = int(c[0]*255)
+    all_rgb[rgb_index][4] = int(c[1]*255)
+    all_rgb[rgb_index][5] = int(c[2]*255)
+    color = Color(all_rgb[rgb_index][4],all_rgb[rgb_index][3],all_rgb[rgb_index][5])
+    colorWipe(strip,color)
+    print(color, 'wipe')
 def saturation(msg, strip, rgb_index, all_rgb):
-        all_rgb[rgb_index][0] = int(msg.payload)*.01
-        c2 = colorsys.hls_to_rgb(all_rgb[rgb_index][1],.5,all_rgb[rgb_index][0])
-        all_rgb[rgb_index][3] = int(c2[0]*255)
-        all_rgb[rgb_index][4] = int(c2[1]*255)
-        all_rgb[rgb_index][5] = int(c2[2]*255)
-        color = Color(all_rgb[rgb_index][4],all_rgb[rgb_index][3],all_rgb[rgb_index][5])
-        colorWipe(strip,color)
+    all_rgb[rgb_index][0] = int(msg.payload)*.01
+    c2 = colorsys.hls_to_rgb(all_rgb[rgb_index][1],.5,all_rgb[rgb_index][0])
+    all_rgb[rgb_index][3] = int(c2[0]*255)
+    all_rgb[rgb_index][4] = int(c2[1]*255)
+    all_rgb[rgb_index][5] = int(c2[2]*255)
+    color = Color(all_rgb[rgb_index][4],all_rgb[rgb_index][3],all_rgb[rgb_index][5])
+    colorWipe(strip,color)
     print(color, 'wipe')
     #for i in range(strip.numPixels()):
         #    strip.setPixelColor(i, color)
@@ -118,10 +118,10 @@ def on_message(client, userdata, msg):
         print('light2')
         light_status(msg,strip2,1,rgbs)
     if msg.topic =="light3/status" :
-    print('light3')
+        print('light3')
         light_status(msg,strip3,2,rgbs)
     if msg.topic =="light4/status" :
-    print('light4')
+        print('light4')
         light_status(msg,strip4,3,rgbs)
 
     if msg.topic =="light1/brightness":
