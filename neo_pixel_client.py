@@ -19,6 +19,8 @@ LED_BRIGHTNESS = 255  # Set to 0 for darkest and 255 for brightest
 LED_INVERT = False  # True to invert the signal (when using NPN transistor level shift)
 LED_CHANNEL = 0  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 LED_CHANNEL2 = 1  # set to '1' for GPIOs 13, 19, 41, 45 or 53
+cycle = false
+
 
 #[saturation,hue,brightness,r,g,b]
 rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255],
@@ -32,6 +34,7 @@ def on_connect(client, userdata, flags, rc):
     global strip2
     global strip3
     global strip4
+    global cycle
     strip1 = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 0)
     strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
@@ -81,13 +84,14 @@ def colorWipe(strip, color, wait_ms=50):
 def colorWipe2(strip, strip2, wait_ms=50):
     """Wipe color across display a pixel at a time."""
     colors = [Color(0, 255, 0), Color(255, 0, 0), Color(0, 0, 255)]
-    for color in colors:
-        for i in range(strip.numPixels()):
-            strip.setPixelColor(i, color)
-            strip2.setPixelColor(i, color)
-            strip.show()
-            strip2.show()
-            time.sleep(wait_ms / 1000.0)
+    while cycle:
+        for color in colors:
+            for i in range(strip.numPixels()):
+                strip.setPixelColor(i, color)
+                strip2.setPixelColor(i, color)
+                strip.show()
+                strip2.show()
+                time.sleep(wait_ms / 1000.0)
 
 
 def light_status(msg, strip, rgb_index, all_rgb):
@@ -181,7 +185,12 @@ def on_message(client, userdata, msg):
         hue(msg, strip2, 1, rgbs)
 
     if msg.topic == "lights/random":
-        colorWipe2(strip1, strip2)
+        if msg.payload == "on"
+            cycle = true
+            colorWipe2(strip1, strip2)
+        else:
+            cycle = false
+
     # if msg.topic == "light3/hue":
     #     hue(msg, strip3, 2, rgbs)
     # if msg.topic == "light4/hue":
