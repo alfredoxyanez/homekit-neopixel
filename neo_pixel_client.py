@@ -80,10 +80,12 @@ def colorWipe(strip, color, wait_ms=50):
         time.sleep(wait_ms / 1000.0)
 
 
-def colorWipe2(strip, strip2, wait_ms=50):
+def colorWipe2(strip, strip2, allrgb, wait_ms=50):
     """Wipe color across display a pixel at a time."""
     colors = [Color(0, 255, 0), Color(255, 0, 0), Color(0, 0, 255)]
-    while cycle:
+    while True:
+        if cycle == False:
+            break
         for color in colors:
             for i in range(strip.numPixels()):
                 strip.setPixelColor(i, color)
@@ -91,6 +93,10 @@ def colorWipe2(strip, strip2, wait_ms=50):
                 strip.show()
                 strip2.show()
                 time.sleep(wait_ms / 1000.0)
+    color = Color(all_rgb[0][4], all_rgb[0][3], all_rgb[0][5])
+    color2 = Color(all_rgb[1][4], all_rgb[1][3], all_rgb[1][5])
+    colorWipe(strip, color)
+    colorWipe(strip2, color2)
 
 
 def light_status(msg, strip, rgb_index, all_rgb):
