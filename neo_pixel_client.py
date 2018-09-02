@@ -157,11 +157,9 @@ def on_message(client, userdata, msg):
     global cycle
     print(rgbs)
     if msg.topic == "light1/status":
-        cycle = False
         light_status(msg, strip1, 0, rgbs)
     if msg.topic == "light2/status":
         print('light2')
-        cycle = False
         light_status(msg, strip2, 1, rgbs)
     # if msg.topic == "light3/status":
     #     print('light3')
