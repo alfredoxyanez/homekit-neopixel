@@ -36,14 +36,14 @@ def on_connect(client, userdata, flags, rc):
                                LED_BRIGHTNESS, 0)
     strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 1)
-    strip3 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT,
-                               LED_BRIGHTNESS, 0)
-    strip4 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT,
-                               LED_BRIGHTNESS, 1)
+    # strip3 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    #                            LED_BRIGHTNESS, 0)
+    # strip4 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+    #                            LED_BRIGHTNESS, 1)
     strip1.begin()
     strip2.begin()
-    strip3.begin()
-    strip4.begin()
+    # strip3.begin()
+    # strip4.begin()
     #test
     client.subscribe('test/#')
 
@@ -137,39 +137,39 @@ def on_message(client, userdata, msg):
     if msg.topic == "light2/status":
         print('light2')
         light_status(msg, strip2, 1, rgbs)
-    if msg.topic == "light3/status":
-        print('light3')
-        light_status(msg, strip3, 2, rgbs)
-    if msg.topic == "light4/status":
-        print('light4')
-        light_status(msg, strip4, 3, rgbs)
+    # if msg.topic == "light3/status":
+    #     print('light3')
+    #     light_status(msg, strip3, 2, rgbs)
+    # if msg.topic == "light4/status":
+    #     print('light4')
+    #     light_status(msg, strip4, 3, rgbs)
 
     if msg.topic == "light1/brightness":
         brightness(msg, strip1, 0, rgbs)
     if msg.topic == "light2/brightness":
         brightness(msg, strip2, 1, rgbs)
-    if msg.topic == "light3/brightness":
-        brightness(msg, strip3, 2, rgbs)
-    if msg.topic == "light4/brightness":
-        brightness(msg, strip4, 3, rgbs)
+    # if msg.topic == "light3/brightness":
+    #     brightness(msg, strip3, 2, rgbs)
+    # if msg.topic == "light4/brightness":
+    #     brightness(msg, strip4, 3, rgbs)
 
     if msg.topic == "light1/saturation":
         saturation(msg, strip1, 0, rgbs)
     if msg.topic == "light2/saturation":
         saturation(msg, strip2, 1, rgbs)
-    if msg.topic == "light3/saturation":
-        saturation(msg, strip3, 2, rgbs)
-    if msg.topic == "light4/saturation":
-        saturation(msg, strip4, 3, rgbs)
+    # if msg.topic == "light3/saturation":
+    #     saturation(msg, strip3, 2, rgbs)
+    # if msg.topic == "light4/saturation":
+    #     saturation(msg, strip4, 3, rgbs)
 
     if msg.topic == "light1/hue":
         hue(msg, strip1, 0, rgbs)
     if msg.topic == "light2/hue":
         hue(msg, strip2, 1, rgbs)
-    if msg.topic == "light3/hue":
-        hue(msg, strip3, 2, rgbs)
-    if msg.topic == "light4/hue":
-        hue(msg, strip4, 3, rgbs)
+    # if msg.topic == "light3/hue":
+    #     hue(msg, strip3, 2, rgbs)
+    # if msg.topic == "light4/hue":
+    #     hue(msg, strip4, 3, rgbs)
     #TEST
     if msg.topic == "test/one":
         colorWipe(strip1, Color(0, 255, 0))
