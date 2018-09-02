@@ -11,8 +11,8 @@ import time
 LED_COUNT = 16  # Number of LED pixels.
 LED_PIN = 12  # GPIO pin connected to the pixels (18 uses PWM!).
 LED_PIN2 = 13  # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-# LED_PIN3       = 18
-# LED_PIN4       = 19
+LED_PIN3 = 18
+LED_PIN4 = 19
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA = 10  # DMA channel to use for generating signal (try 10)
 LED_BRIGHTNESS = 255  # Set to 0 for darkest and 255 for brightest
@@ -36,12 +36,14 @@ def on_connect(client, userdata, flags, rc):
                                LED_BRIGHTNESS, 0)
     strip2 = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA, LED_INVERT,
                                LED_BRIGHTNESS, 1)
-    # strip3 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, 0)
-    # strip4 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, 1)
+    strip3 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+                               LED_BRIGHTNESS, 0)
+    strip4 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA, LED_INVERT,
+                               LED_BRIGHTNESS, 1)
     strip1.begin()
     strip2.begin()
-    # strip3.begin()
-    # strip4.begin()
+    strip3.begin()
+    strip4.begin()
     #test
     client.subscribe('test/#')
 
