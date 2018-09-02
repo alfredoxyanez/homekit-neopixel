@@ -19,7 +19,7 @@ LED_BRIGHTNESS = 255  # Set to 0 for darkest and 255 for brightest
 LED_INVERT = False  # True to invert the signal (when using NPN transistor level shift)
 LED_CHANNEL = 0  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 LED_CHANNEL2 = 1  # set to '1' for GPIOs 13, 19, 41, 45 or 53
-cycle = false
+cycle = False
 
 #[saturation,hue,brightness,r,g,b]
 rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255],
@@ -186,10 +186,10 @@ def on_message(client, userdata, msg):
     if msg.topic == "lights/random":
         print(msg.payload)
         if msg.payload == "on":
-            cycle = true
+            cycle = True
             colorWipe2(strip1, strip2)
         else:
-            cycle = false
+            cycle = False
 
     # if msg.topic == "light3/hue":
     #     hue(msg, strip3, 2, rgbs)
