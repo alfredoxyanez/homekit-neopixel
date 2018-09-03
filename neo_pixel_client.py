@@ -157,10 +157,14 @@ def on_message(client, userdata, msg):
     global cycle
     print(rgbs)
     if msg.topic == "light1/status":
-        light_status(msg, strip1, 0, rgbs)
+        t = threading.Thread(target=light_status, args=(msg, strip1, 0, rgbs))
+        t.start()
+        #light_status(msg, strip1, 0, rgbs)
     if msg.topic == "light2/status":
-        print('light2')
-        light_status(msg, strip2, 1, rgbs)
+        t = threading.Thread(target=light_status, args=(msg, strip2, 1, rgbs))
+        t.start()
+        #print('light2')
+        #light_status(msg, strip2, 1, rgbs)
     # if msg.topic == "light3/status":
     #     print('light3')
     #     light_status(msg, strip3, 2, rgbs)
