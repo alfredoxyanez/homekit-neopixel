@@ -169,27 +169,39 @@ def on_message(client, userdata, msg):
     #     light_status(msg, strip4, 3, rgbs)
 
     if msg.topic == "light1/brightness":
-        brightness(msg, strip1, 0, rgbs)
+        t = threading.Thread(target=brightness, args=(msg, strip1, 0, rgbs))
+        t.start()
+        #brightness(msg, strip1, 0, rgbs)
     if msg.topic == "light2/brightness":
-        brightness(msg, strip2, 1, rgbs)
+        t = threading.Thread(target=brightness, args=(msg, strip2, 1, rgbs))
+        t.start()
+        #brightness(msg, strip2, 1, rgbs)
     # if msg.topic == "light3/brightness":
     #     brightness(msg, strip3, 2, rgbs)
     # if msg.topic == "light4/brightness":
     #     brightness(msg, strip4, 3, rgbs)
 
     if msg.topic == "light1/saturation":
-        saturation(msg, strip1, 0, rgbs)
+        t = threading.Thread(target=saturation, args=(msg, strip1, 0, rgbs))
+        t.start()
+        #saturation(msg, strip1, 0, rgbs)
     if msg.topic == "light2/saturation":
-        saturation(msg, strip2, 1, rgbs)
+        t = threading.Thread(target=saturation, args=(msg, strip2, 1, rgbs))
+        t.start()
+        #saturation(msg, strip2, 1, rgbs)
     # if msg.topic == "light3/saturation":
     #     saturation(msg, strip3, 2, rgbs)
     # if msg.topic == "light4/saturation":
     #     saturation(msg, strip4, 3, rgbs)
 
     if msg.topic == "light1/hue":
-        hue(msg, strip1, 0, rgbs)
+        t = threading.Thread(target=hue, args=(msg, strip1, 0, rgbs))
+        t.start()
+        #hue(msg, strip1, 0, rgbs)
     if msg.topic == "light2/hue":
-        hue(msg, strip2, 1, rgbs)
+        t = threading.Thread(target=hue, args=(msg, strip2, 1, rgbs))
+        t.start()
+        #hue(msg, strip2, 1, rgbs)
 
     if msg.topic == "lights/random":
         print(msg.payload)
