@@ -103,7 +103,6 @@ def colorWipe2(strip, strip2, all_rgb, wait_ms=100):
     colorWipe(strip, color)
     colorWipe(strip2, color2)
 
-
     def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
         """Wipe color across display a pixel at a time."""
         print("colorwipe2", cycle)
@@ -114,13 +113,13 @@ def colorWipe2(strip, strip2, all_rgb, wait_ms=100):
             r = r + random.randint(-5, 5)
             g = g + random.randint(-5, 5)
             b = b + random.randint(-5, 5)
-            if r < 0 || r> 255:
+            if r < 0 or r > 255:
                 r = random.randint(0, 255)
-            if g < 0 || g> 255:
+            if g < 0 or g > 255:
                 g = random.randint(0, 255)
-            if b < 0 || b> 255:
+            if b < 0 or b > 255:
                 b = random.randint(0, 255)
-            color = Color(r,g,b)
+            color = Color(r, g, b)
             for i in range(strip.numPixels()):
                 strip.setPixelColor(i, color)
                 strip2.setPixelColor(i, color)
