@@ -110,6 +110,8 @@ def colorWipe2(strip, strip2, all_rgb, wait_ms=100):
         g = 127
         b = 127
         while True:
+            if cycle == False:
+                break
             r = r + random.randint(-5, 5)
             g = g + random.randint(-5, 5)
             b = b + random.randint(-5, 5)
