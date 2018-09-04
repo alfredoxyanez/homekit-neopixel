@@ -72,6 +72,10 @@ def on_connect(client, userdata, flags, rc):
     # client.subscribe("light2/saturation")
 
 
+def clamp(n, minn, maxn):
+    return max(min(maxn, n), minn)
+
+
 def colorWipe(strip, color, wait_ms=50):
     """Wipe color across display a pixel at a time."""
     for i in range(strip.numPixels()):
@@ -98,6 +102,35 @@ def colorWipe2(strip, strip2, all_rgb, wait_ms=100):
     color2 = Color(all_rgb[1][4], all_rgb[1][3], all_rgb[1][5])
     colorWipe(strip, color)
     colorWipe(strip2, color2)
+
+
+    def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
+        """Wipe color across display a pixel at a time."""
+        print("colorwipe2", cycle)
+        r = 127
+        g = 127
+        b = 127
+        while True:
+            r = r + random.randint(-5, 5)
+            g = g + random.randint(-5, 5)
+            b = b + random.randint(-5, 5)
+            if r < 0 || r> 255:
+                r = random.randint(0, 255)
+            if g < 0 || g> 255:
+                g = random.randint(0, 255)
+            if b < 0 || b> 255:
+                b = random.randint(0, 255)
+            color = Color(r,g,b)
+            for i in range(strip.numPixels()):
+                strip.setPixelColor(i, color)
+                strip2.setPixelColor(i, color)
+                strip.show()
+                strip2.show()
+                time.sleep(wait_ms / 1000.0)
+        color = Color(all_rgb[0][4], all_rgb[0][3], all_rgb[0][5])
+        color2 = Color(all_rgb[1][4], all_rgb[1][3], all_rgb[1][5])
+        colorWipe(strip, color)
+        colorWipe(strip2, color2)
 
 
 def light_status(msg, strip, rgb_index, all_rgb):
@@ -213,7 +246,7 @@ def on_message(client, userdata, msg):
             cycle = True
             print("cycle: ", cycle)
             t = threading.Thread(
-                target=colorWipe2, args=(strip1, strip2, rgbs))
+                target=colorWipe3, args=(strip1, strip2, rgbs))
             t.start()
         else:
             cycle = False
