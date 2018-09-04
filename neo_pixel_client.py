@@ -114,9 +114,9 @@ def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
     while True:
         if cycle == False:
             break
-        r = r + random.randint(-5, 5)
-        g = g + random.randint(-5, 5)
-        b = b + random.randint(-5, 5)
+        r = r + random.randint(-20, 20)
+        g = g + random.randint(-20, 20)
+        b = b + random.randint(-20, 20)
         if r < 0 or r > 255:
             r = random.randint(0, 255)
         if g < 0 or g > 255:
