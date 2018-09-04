@@ -103,35 +103,36 @@ def colorWipe2(strip, strip2, all_rgb, wait_ms=100):
     colorWipe(strip, color)
     colorWipe(strip2, color2)
 
-    def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
-        """Wipe color across display a pixel at a time."""
-        print("colorwipe2", cycle)
-        r = 127
-        g = 127
-        b = 127
-        while True:
-            if cycle == False:
-                break
-            r = r + random.randint(-5, 5)
-            g = g + random.randint(-5, 5)
-            b = b + random.randint(-5, 5)
-            if r < 0 or r > 255:
-                r = random.randint(0, 255)
-            if g < 0 or g > 255:
-                g = random.randint(0, 255)
-            if b < 0 or b > 255:
-                b = random.randint(0, 255)
-            color = Color(r, g, b)
-            for i in range(strip.numPixels()):
-                strip.setPixelColor(i, color)
-                strip2.setPixelColor(i, color)
-                strip.show()
-                strip2.show()
-                time.sleep(wait_ms / 1000.0)
-        color = Color(all_rgb[0][4], all_rgb[0][3], all_rgb[0][5])
-        color2 = Color(all_rgb[1][4], all_rgb[1][3], all_rgb[1][5])
-        colorWipe(strip, color)
-        colorWipe(strip2, color2)
+
+def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
+    """Wipe color across display a pixel at a time."""
+    print("colorwipe2", cycle)
+    r = 127
+    g = 127
+    b = 127
+    while True:
+        if cycle == False:
+            break
+        r = r + random.randint(-5, 5)
+        g = g + random.randint(-5, 5)
+        b = b + random.randint(-5, 5)
+        if r < 0 or r > 255:
+            r = random.randint(0, 255)
+        if g < 0 or g > 255:
+            g = random.randint(0, 255)
+        if b < 0 or b > 255:
+            b = random.randint(0, 255)
+        color = Color(r, g, b)
+        for i in range(strip.numPixels()):
+            strip.setPixelColor(i, color)
+            strip2.setPixelColor(i, color)
+            strip.show()
+            strip2.show()
+            time.sleep(wait_ms / 1000.0)
+    color = Color(all_rgb[0][4], all_rgb[0][3], all_rgb[0][5])
+    color2 = Color(all_rgb[1][4], all_rgb[1][3], all_rgb[1][5])
+    colorWipe(strip, color)
+    colorWipe(strip2, color2)
 
 
 def light_status(msg, strip, rgb_index, all_rgb):
