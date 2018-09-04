@@ -7,6 +7,7 @@ from neopixel import *
 import colorsys
 import time
 import threading
+import random
 
 # LED strip configuration:
 LED_COUNT = 16  # Number of LED pixels.
