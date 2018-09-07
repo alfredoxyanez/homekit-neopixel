@@ -114,6 +114,7 @@ def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
     b = 127
     while True:
         if cycle == False:
+            print("END C1")
             break
         r = r + random.randint(-20, 20)
         g = g + random.randint(-20, 20)
@@ -141,7 +142,7 @@ def colorWipe4(strip, strip2, all_rgb, wait_ms=200):
     """Wipe color across display a pixel at a time."""
     while True:
         if cycle2 == False:
-            print("DONE!")
+            print("END C2")
             break
         for x in range(255):
             for y in range(255):
