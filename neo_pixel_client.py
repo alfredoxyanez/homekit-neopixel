@@ -147,7 +147,7 @@ def colorWipe4(strip, strip2, all_rgb, wait_ms=200):
                     color = Color(x, y, z)
                     for i in range(strip.numPixels()):
                         if cycle2 == False:
-                            break
+                            return
                         strip.setPixelColor(i, color)
                         strip2.setPixelColor(i, color)
                         strip.show()
