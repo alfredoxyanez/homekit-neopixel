@@ -22,6 +22,7 @@ LED_INVERT = False  # True to invert the signal (when using NPN transistor level
 LED_CHANNEL = 0  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 LED_CHANNEL2 = 1  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 cycle = False
+cycle2 = False
 
 #[saturation,hue,brightness,r,g,b]
 rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255]]
@@ -62,7 +63,7 @@ def on_connect(client, userdata, flags, rc):
     # client.subscribe("light1/saturation")
     #Light2
     client.subscribe("light2/#")
-    client.subscribe("lights/random")
+    client.subscribe("lights/#")
     # client.subscribe("light2/report/status")
     # client.subscribe("light2/status")
     # client.subscribe("light2/report/brightness")
@@ -136,6 +137,27 @@ def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
     colorWipe(strip2, color2)
 
 
+def colorWipe4(strip, strip2, all_rgb, wait_ms=50):
+    """Wipe color across display a pixel at a time."""
+    while True:
+        if cycle2 == False:
+            break
+        for x in range(255):
+            for y in range(255):
+                for z in range(255):
+                    color = Color(x, y, z)
+                    for i in range(strip.numPixels()):
+                        strip.setPixelColor(i, color)
+                        strip2.setPixelColor(i, color)
+                        strip.show()
+                        strip2.show()
+                        time.sleep(wait_ms / 1000.0)
+    color = Color(all_rgb[0][4], all_rgb[0][3], all_rgb[0][5])
+    color2 = Color(all_rgb[1][4], all_rgb[1][3], all_rgb[1][5])
+    colorWipe(strip, color)
+    colorWipe(strip2, color2)
+
+
 def light_status(msg, strip, rgb_index, all_rgb):
     if msg.payload == "true":
         print('ON status ', rgb_index)
@@ -191,6 +213,7 @@ def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
     global rgbs
     global cycle
+    global cycle2
     print(rgbs)
     if msg.topic == "light1/status":
         t = threading.Thread(target=light_status, args=(msg, strip1, 0, rgbs))
@@ -254,6 +277,18 @@ def on_message(client, userdata, msg):
         else:
             cycle = False
             print("cycle: ", cycle)
+
+    if msg.topic == "lights/random2":
+        print(msg.payload)
+        if msg.payload == "on":
+            cycle2 = True
+            print("cycle2: ", cycle2)
+            t = threading.Thread(
+                target=colorWipe4, args=(strip1, strip2, rgbs))
+            t.start()
+        else:
+            cycle2 = False
+            print("cycle2: ", cycle)
 
     # if msg.topic == "light3/hue":
     #     hue(msg, strip3, 2, rgbs)
