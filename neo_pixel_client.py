@@ -137,10 +137,11 @@ def colorWipe3(strip, strip2, all_rgb, wait_ms=100):
     colorWipe(strip2, color2)
 
 
-def colorWipe4(strip, strip2, all_rgb, wait_ms=50):
+def colorWipe4(strip, strip2, all_rgb, wait_ms=200):
     """Wipe color across display a pixel at a time."""
     while True:
         if cycle2 == False:
+            print("DONE!")
             break
         for x in range(255):
             for y in range(255):
