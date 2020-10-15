@@ -4,9 +4,10 @@ import paho.mqtt.client as mqtt
 import threading
 import colorsys
 
-
+global rgbs
 global pixels_1
 global pixels_2
+
 pixel_pin_1 = board.D18
 pixel_pin_2 = board.D19
 ORDER = GRB
@@ -22,6 +23,7 @@ pixels_2 = NeoPixel(
     pixel_pin_2, num_pixels, brightness=0.2, auto_write=False,
     pixel_order=ORDER
 )
+rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255]]
 
 
 def light_status(msg, strip, rgb_index, all_rgb):
