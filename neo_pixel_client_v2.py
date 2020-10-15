@@ -54,7 +54,7 @@ def brightness(msg):
     # pixels_2.show()
 
 
-def hue(msg, strip, rgb_index, all_rgb):
+def hue(msg):
     import pdb;
     pdb.set_trace()
     light_status[1] = int(msg.payload) / 360.0
@@ -62,10 +62,11 @@ def hue(msg, strip, rgb_index, all_rgb):
     light_status[3] = int(c[0] * 255)  # R
     light_status[4] = int(c[1] * 255)  # G
     light_status[5] = int(c[2] * 255)  # B
-    color = (all_rgb[rgb_index][3],
-             all_rgb[rgb_index][4],
-             all_rgb[rgb_index][5])
-    strip.fill(color)
+    color = (light_status[3],
+             light_status[4],
+             light_status[5])
+    pixels_1.fill(color)
+    pixels_1.show()
 
 
 def saturation(msg, strip, rgb_index, all_rgb):
