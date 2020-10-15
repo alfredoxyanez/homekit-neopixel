@@ -30,7 +30,7 @@ light_status = [0, 0, .5, 255, 255, 255]
 def status(msg):
     import pdb;
     pdb.set_trace()
-    if msg.payload == "true":
+    if bool(msg.payload):
         light_status[2] = 1 if light_status[2] == 0 else light_status[2]
     else:
         light_status[2] = 0
