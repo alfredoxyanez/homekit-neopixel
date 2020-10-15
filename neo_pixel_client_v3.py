@@ -22,9 +22,9 @@ def on_connect(client, userdata, flags, rc):
     global strip_odd
     global strip_even
 
-    strip_odd = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA,
+    strip_odd = Adafruit_NeoPixel(LED_COUNT, 12, LED_FREQ_HZ, LED_DMA,
                                   LED_INVERT, LED_BRIGHTNESS, 0)
-    strip_even = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA,
+    strip_even = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA,
                                    LED_INVERT, LED_BRIGHTNESS, 1)
     strip_odd.begin()
     strip_even.begin()
