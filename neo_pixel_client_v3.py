@@ -30,6 +30,11 @@ def on_connect(client, userdata, flags, rc):
 
     client.subscribe("shelf/#")
 
+def colorWipeNoShow(strip, color):
+    """Wipe color across display a pixel at a time."""
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(i, color)
+
 def colorWipe(strip, color):
     """Wipe color across display a pixel at a time."""
     for i in range(strip.numPixels()):
@@ -40,11 +45,17 @@ def status(msg):
     payload = msg.payload.decode("utf-8")
     if payload == 'true':
         light_status[2] = 255 if light_status[2] == 0 else light_status[2]
+        if (strip_odd.getPixelColorRGB(0).r == 0 and
+                strip_odd.getPixelColorRGB(0).g == 0 and
+                strip_odd.getPixelColorRGB(0).b == 0):
+            strip_odd.setBrightness(light_status[2])
+            color = Color(light_status[3],
+                          light_status[4],
+                          light_status[5])
+            colorWipeNoShow(strip_odd, color)
+            colorWipeNoShow(strip_even, color)
     else:
         light_status[2] = 0
-    color = Color(light_status[3],
-                  light_status[4],
-                  light_status[5])
 
     strip_odd.setBrightness(light_status[2])
     strip_even.setBrightness(light_status[2])
@@ -88,7 +99,6 @@ def saturation(msg):
 
 
 def on_message(client, userdata, msg):
-    import pdb; pdb.set_trace()
     if msg.topic == "shelf/status":
         status(msg)
     if msg.topic == "shelf/brightness":
