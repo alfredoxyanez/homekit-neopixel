@@ -88,6 +88,7 @@ def saturation(msg):
 
 
 def on_message(client, userdata, msg):
+    import pdb; pdb.set_trace()
     if msg.topic == "shelf/status":
         status(msg)
     if msg.topic == "shelf/brightness":
