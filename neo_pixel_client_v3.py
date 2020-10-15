@@ -40,9 +40,15 @@ def status(msg):
     payload = msg.payload.decode("utf-8")
     if payload == 'true':
         light_status[2] = 255 if light_status[2] == 0 else light_status[2]
-        import pdb; pdb.set_trace()
     else:
         light_status[2] = 0
+    color = Color(light_status[3],
+                  light_status[4],
+                  light_status[5])
+
+    import pdb; pdb.set_trace()
+    colorWipe(strip_odd, color)
+    colorWipe(strip_even, color)
 
     strip_odd.setBrightness(light_status[2])
     strip_even.setBrightness(light_status[2])
