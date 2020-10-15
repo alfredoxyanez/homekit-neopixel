@@ -38,8 +38,6 @@ def colorWipe(strip, color):
     strip.show()
 
 def status(msg):
-    import pdb;
-    pdb.set_trace()
     payload = msg.payload.decode("utf-8")
     if payload == 'true':
         light_status[2] = 1 if light_status[2] == 0 else light_status[2]
@@ -52,8 +50,6 @@ def status(msg):
     strip_even.show()
 
 def brightness(msg):
-    import pdb;
-    pdb.set_trace()
     bn = int(msg.payload)
     bn = int(255 * bn * .01)
     light_status[2] = bn
@@ -63,10 +59,7 @@ def brightness(msg):
     strip_even.show()
 
 
-
 def hue(msg):
-    import pdb;
-    pdb.set_trace()
     light_status[1] = int(msg.payload) / 360.0
     c = colorsys.hls_to_rgb(light_status[1], .5, light_status[0])
     light_status[3] = int(c[0] * 255)  # R
@@ -79,10 +72,7 @@ def hue(msg):
     colorWipe(strip_even, color)
 
 
-
 def saturation(msg):
-    import pdb;
-    pdb.set_trace()
     light_status[0] = int(msg.payload) * .01
     c = colorsys.hls_to_rgb(light_status[1], .5, light_status[0])
     light_status[3] = int(c[0] * 255)
