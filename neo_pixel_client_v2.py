@@ -75,7 +75,7 @@ def saturation(msg, strip, rgb_index, all_rgb):
 
 def on_connect(client, userdata, flags, rc):
     # Light1
-    client.subscribe("shelf/#")
+    client.subscribe("light1/#")
 
 def on_message(client, userdata, msg):
     import pdb; pdb.set_trace()
