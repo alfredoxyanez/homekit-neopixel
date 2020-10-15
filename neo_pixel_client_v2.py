@@ -33,12 +33,12 @@ def light_status(msg, strip, rgb_index, all_rgb):
                  all_rgb[rgb_index][5])
         if all_rgb[rgb_index][2] == 0:
             all_rgb[rgb_index][2] = 100
-        strip.setBrightness(all_rgb[rgb_index][2])
+        strip.brightness = all_rgb[rgb_index][2]
         strip.fill(color)
         strip.show()
     else:
         all_rgb[rgb_index][2] = 0
-        strip.setBrightness(all_rgb[rgb_index][2])
+        strip.brightness = all_rgb[rgb_index][2]
         strip.show()
 
 
@@ -46,7 +46,7 @@ def brightness(msg, strip, rgb_index, all_rgb):
     bn = int(msg.payload)
     bn = int(255 * bn * .01)
     all_rgb[rgb_index][2] = bn
-    strip.setBrightness(all_rgb[rgb_index][2])
+    strip.brightness = all_rgb[rgb_index][2]
     strip.show()
 
 
@@ -68,8 +68,9 @@ def saturation(msg, strip, rgb_index, all_rgb):
     all_rgb[rgb_index][3] = int(c2[0] * 255)
     all_rgb[rgb_index][4] = int(c2[1] * 255)
     all_rgb[rgb_index][5] = int(c2[2] * 255)
-    color = (all_rgb[rgb_index][4], all_rgb[rgb_index][3],
-                  all_rgb[rgb_index][5])
+    color = (all_rgb[rgb_index][3],
+             all_rgb[rgb_index][4],
+             all_rgb[rgb_index][5])
     strip.fill(color)
 
 
