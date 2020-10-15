@@ -40,7 +40,7 @@ def colorWipe(strip, color):
 def status(msg):
     payload = msg.payload.decode("utf-8")
     if payload == 'true':
-        light_status[2] = 1 if light_status[2] == 0 else light_status[2]
+        light_status[2] = 255 if light_status[2] == 0 else light_status[2]
     else:
         light_status[2] = 0
 
@@ -86,7 +86,6 @@ def saturation(msg):
 
 
 def on_message(client, userdata, msg):
-    import pdb; pdb.set_trace()
     if msg.topic == "shelf/status":
         status(msg)
     if msg.topic == "shelf/brightness":
