@@ -23,31 +23,30 @@ pixels_2 = NeoPixel(
     pixel_pin_2, num_pixels, brightness=0.2, auto_write=False,
     pixel_order=ORDER
 )
-rgbs = [[0, 0, 100, 255, 255, 255], [0, 0, 100, 255, 255, 255]]
+# [Saturation, , Brightness, G, R, B]
+light_status = [0, 0, 100, 255, 255, 255]
 
 
-def light_status(msg, strip, rgb_index, all_rgb):
+def status(msg):
     if msg.payload == "true":
-        color = (all_rgb[rgb_index][3],
-                 all_rgb[rgb_index][4],
-                 all_rgb[rgb_index][5])
-        if all_rgb[rgb_index][2] == 0:
-            all_rgb[rgb_index][2] = 100
-        strip.brightness = all_rgb[rgb_index][2]
-        strip.fill(color)
-        strip.show()
+        light_status[2] = 100 if light_status[2] == 0 else light_status[2]
     else:
-        all_rgb[rgb_index][2] = 0
-        strip.brightness = all_rgb[rgb_index][2]
-        strip.show()
+        light_status[2] = 0
+
+    pixels_1.brightness = light_status[2]
+    pixels_1.show()
+    pixels_2.brightness = light_status[2]
+    pixels_2.show()
 
 
-def brightness(msg, strip, rgb_index, all_rgb):
+def brightness(msg):
     bn = int(msg.payload)
     bn = int(255 * bn * .01)
-    all_rgb[rgb_index][2] = bn
-    strip.brightness = all_rgb[rgb_index][2]
-    strip.show()
+    light_status[2] = bn
+    pixels_1.brightness = light_status[2]
+    pixels_1.show()
+    pixels_2.brightness = light_status[2]
+    pixels_2.show()
 
 
 def hue(msg, strip, rgb_index, all_rgb):
@@ -76,38 +75,18 @@ def saturation(msg, strip, rgb_index, all_rgb):
 
 def on_connect(client, userdata, flags, rc):
     # Light1
-    client.subscribe("light1/#")
-    # Light2
-    client.subscribe("light2/#")
+    client.subscribe("shelf/#")
 
 def on_message(client, userdata, msg):
-    if msg.topic == "light1/status":
-        t = threading.Thread(target=light_status, args=(msg, pixels_1, 0, rgbs))
-        t.start()
-    if msg.topic == "light2/status":
-        t = threading.Thread(target=light_status, args=(msg, pixels_2, 1, rgbs))
-        t.start()
-
-    if msg.topic == "light1/brightness":
-        t = threading.Thread(target=brightness, args=(msg, pixels_1, 0, rgbs))
-        t.start()
-    if msg.topic == "light2/brightness":
-        t = threading.Thread(target=brightness, args=(msg, pixels_2, 1, rgbs))
-        t.start()
-
-    if msg.topic == "light1/saturation":
-        t = threading.Thread(target=saturation, args=(msg, pixels_1, 0, rgbs))
-        t.start()
-    if msg.topic == "light2/saturation":
-        t = threading.Thread(target=saturation, args=(msg, pixels_2, 1, rgbs))
-        t.start()
-
-    if msg.topic == "light1/hue":
-        t = threading.Thread(target=hue, args=(msg, pixels_1, 0, rgbs))
-        t.start()
-    if msg.topic == "light2/hue":
-        t = threading.Thread(target=hue, args=(msg, pixels_2, 1, rgbs))
-        t.start()
+    import pdb; pdb.set_trace()
+    if msg.topic == "shelf/status":
+        status(msg)
+    if msg.topic == "shelf/brightness":
+        brightness(msg)
+    if msg.topic == "shelf/saturation":
+        saturation(msg)
+    if msg.topic == "shelf/hue":
+        hue(msg)
 
 
 client = mqtt.Client()
