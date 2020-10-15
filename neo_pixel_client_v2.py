@@ -23,7 +23,7 @@ pixels_1 = NeoPixel(
 #     pixel_pin_2, num_pixels, brightness=0.2, auto_write=False,
 #     pixel_order=ORDER
 # )
-# [Saturation, , Brightness (0,1), G, R, B]
+# [Saturation, Hue, Brightness (0,1), R, G, B]
 light_status = [0, 0, .5, 255, 255, 255]
 
 
@@ -57,13 +57,13 @@ def brightness(msg):
 def hue(msg, strip, rgb_index, all_rgb):
     import pdb;
     pdb.set_trace()
-    all_rgb[rgb_index][1] = int(msg.payload) / 360.0
-    c = colorsys.hls_to_rgb(all_rgb[rgb_index][1], .5, all_rgb[rgb_index][0])
-    all_rgb[rgb_index][3] = int(c[0] * 255)
-    all_rgb[rgb_index][4] = int(c[1] * 255)
-    all_rgb[rgb_index][5] = int(c[2] * 255)
-    color = (all_rgb[rgb_index][4],
-             all_rgb[rgb_index][3],
+    light_status[1] = int(msg.payload) / 360.0
+    c = colorsys.hls_to_rgb(light_status[1], .5, light_status[0])
+    light_status[3] = int(c[0] * 255)  # R
+    light_status[4] = int(c[1] * 255)  # G
+    light_status[5] = int(c[2] * 255)  # B
+    color = (all_rgb[rgb_index][3],
+             all_rgb[rgb_index][4],
              all_rgb[rgb_index][5])
     strip.fill(color)
 
