@@ -8,8 +8,8 @@ global rgbs
 global pixels_1
 global pixels_2
 
-pixel_pin_1 = board.D18
-pixel_pin_2 = board.D19
+pixel_pin_1 = board.D12
+pixel_pin_2 = board.D13
 ORDER = GRB
 # The number of NeoPixels
 num_pixels = 16
@@ -81,7 +81,6 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("light2/#")
 
 def on_message(client, userdata, msg):
-    global rgbs
     if msg.topic == "light1/status":
         t = threading.Thread(target=light_status, args=(msg, pixels_1, 0, rgbs))
         t.start()
