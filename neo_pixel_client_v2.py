@@ -69,18 +69,19 @@ def hue(msg):
     pixels_1.show()
 
 
-def saturation(msg, strip, rgb_index, all_rgb):
+def saturation(msg):
     import pdb;
     pdb.set_trace()
-    all_rgb[rgb_index][0] = int(msg.payload) * .01
-    c2 = colorsys.hls_to_rgb(all_rgb[rgb_index][1], .5, all_rgb[rgb_index][0])
-    all_rgb[rgb_index][3] = int(c2[0] * 255)
-    all_rgb[rgb_index][4] = int(c2[1] * 255)
-    all_rgb[rgb_index][5] = int(c2[2] * 255)
-    color = (all_rgb[rgb_index][3],
-             all_rgb[rgb_index][4],
-             all_rgb[rgb_index][5])
-    strip.fill(color)
+    light_status[0] = int(msg.payload) * .01
+    c = colorsys.hls_to_rgb(light_status[1], .5, light_status[0])
+    light_status[3] = int(c[0] * 255)
+    light_status[4] = int(c[1] * 255)
+    light_status[5] = int(c[2] * 255)
+    color = (light_status[3],
+             light_status[4],
+             light_status[5])
+    pixels_1.fill(color)
+    pixels_1.show()
 
 
 def on_connect(client, userdata, flags, rc):
