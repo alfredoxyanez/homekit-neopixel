@@ -18,7 +18,6 @@ light_status = [0, 0, 50, 255, 255, 255]
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
-    print("Connected with result code " + str(rc))
     global strip_odd
     global strip_even
 
@@ -41,6 +40,7 @@ def status(msg):
     payload = msg.payload.decode("utf-8")
     if payload == 'true':
         light_status[2] = 255 if light_status[2] == 0 else light_status[2]
+        import pdb; pdb.set_trace()
     else:
         light_status[2] = 0
 
