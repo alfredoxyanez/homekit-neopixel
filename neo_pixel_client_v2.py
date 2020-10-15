@@ -10,7 +10,7 @@ global pixels_2
 
 pixel_pin_1 = board.D12
 pixel_pin_2 = board.D13
-ORDER = RGB
+ORDER = GRB
 # The number of NeoPixels
 num_pixels = 16
 
