@@ -25,8 +25,17 @@ def on_connect(client, userdata, flags, rc):
                                   LED_INVERT, LED_BRIGHTNESS, 0)
     strip_even = Adafruit_NeoPixel(LED_COUNT, 13, LED_FREQ_HZ, LED_DMA,
                                    LED_INVERT, LED_BRIGHTNESS, 1)
+
+    strip_3 = Adafruit_NeoPixel(LED_COUNT, 18, LED_FREQ_HZ, LED_DMA,
+                                LED_INVERT, LED_BRIGHTNESS, 0)
+    strip_4 = Adafruit_NeoPixel(LED_COUNT, 19, LED_FREQ_HZ, LED_DMA,
+                                LED_INVERT, LED_BRIGHTNESS, 1)
+
+
     strip_odd.begin()
     strip_even.begin()
+    strip_3.begin()
+    strip_4.begin()
 
     client.subscribe("shelf/#")
 
