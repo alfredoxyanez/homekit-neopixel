@@ -46,10 +46,6 @@ def status(msg):
                   light_status[4],
                   light_status[5])
 
-    import pdb; pdb.set_trace()
-    # colorWipe(strip_odd, color)
-    # colorWipe(strip_even, color)
-
     strip_odd.setBrightness(light_status[2])
     strip_even.setBrightness(light_status[2])
     strip_odd.show()
