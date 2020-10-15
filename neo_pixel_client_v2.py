@@ -19,10 +19,10 @@ pixels_1 = NeoPixel(
     pixel_order=ORDER
 )
 
-pixels_2 = NeoPixel(
-    pixel_pin_2, num_pixels, brightness=0.2, auto_write=False,
-    pixel_order=ORDER
-)
+# pixels_2 = NeoPixel(
+#     pixel_pin_2, num_pixels, brightness=0.2, auto_write=False,
+#     pixel_order=ORDER
+# )
 # [Saturation, , Brightness, G, R, B]
 light_status = [0, 0, 100, 255, 255, 255]
 
@@ -35,8 +35,8 @@ def status(msg):
 
     pixels_1.brightness = light_status[2]
     pixels_1.show()
-    pixels_2.brightness = light_status[2]
-    pixels_2.show()
+    # pixels_2.brightness = light_status[2]
+    # pixels_2.show()
 
 
 def brightness(msg):
@@ -45,8 +45,8 @@ def brightness(msg):
     light_status[2] = bn
     pixels_1.brightness = light_status[2]
     pixels_1.show()
-    pixels_2.brightness = light_status[2]
-    pixels_2.show()
+    # pixels_2.brightness = light_status[2]
+    # pixels_2.show()
 
 
 def hue(msg, strip, rgb_index, all_rgb):
@@ -75,7 +75,7 @@ def saturation(msg, strip, rgb_index, all_rgb):
 
 def on_connect(client, userdata, flags, rc):
     # Light1
-    client.subscribe("light1/#")
+    client.subscribe("shelf/#")
 
 def on_message(client, userdata, msg):
     import pdb; pdb.set_trace()
