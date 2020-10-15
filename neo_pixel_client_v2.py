@@ -8,8 +8,7 @@ global rgbs
 global pixels_1
 global pixels_2
 
-pixel_pin_1 = board.D12
-pixel_pin_2 = board.D13
+pixel_pin_1 = board.D18
 ORDER = GRB
 # The number of NeoPixels
 num_pixels = 16
@@ -19,10 +18,7 @@ pixels_1 = NeoPixel(
     pixel_order=ORDER
 )
 
-# pixels_2 = NeoPixel(
-#     pixel_pin_2, num_pixels, brightness=0.2, auto_write=False,
-#     pixel_order=ORDER
-# )
+
 # [Saturation, Hue, Brightness (0,1), R, G, B]
 light_status = [0, 0, .5, 255, 255, 255]
 
@@ -38,9 +34,6 @@ def status(msg):
 
     pixels_1.brightness = light_status[2]
     pixels_1.show()
-    # pixels_2.brightness = light_status[2]
-    # pixels_2.show()
-
 
 def brightness(msg):
     import pdb;
@@ -50,8 +43,7 @@ def brightness(msg):
     light_status[2] = bn
     pixels_1.brightness = light_status[2]
     pixels_1.show()
-    # pixels_2.brightness = light_status[2]
-    # pixels_2.show()
+
 
 
 def hue(msg):
