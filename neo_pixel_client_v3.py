@@ -41,7 +41,7 @@ def status(msg):
     import pdb;
     pdb.set_trace()
     payload = msg.payload.decode("utf-8")
-    if payload == 'false':
+    if payload == 'true':
         light_status[2] = 1 if light_status[2] == 0 else light_status[2]
     else:
         light_status[2] = 0
