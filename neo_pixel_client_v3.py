@@ -76,6 +76,12 @@ def status(msg):
                 strip_odd.getPixelColorRGB(0).g == 0 and
                 strip_odd.getPixelColorRGB(0).b == 0):
             strip_odd.setBrightness(light_status[2])
+            if (light_status[3] == 0 and light_status[4] == 0 and
+                    light_status[5] == 0):
+                light_status[3] = 255
+                light_status[4] = 255
+                light_status[5] = 255
+                
             color = Color(light_status[3],
                           light_status[4],
                           light_status[5])
