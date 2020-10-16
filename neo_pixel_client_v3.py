@@ -2,6 +2,7 @@
 import time
 import colorsys
 import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
 from rpi_ws281x import ws, Color, Adafruit_NeoPixel
 
 # LED strip configuration:
@@ -13,8 +14,8 @@ LED_INVERT = False  # True to invert the signal (when using NPN transistor level
 LED_CHANNEL = 0  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 LED_CHANNEL2 = 1  # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
-# [Saturation, Hue, Brightness (1,100), R, G, B]
-light_status = [0, 0, 50, 255, 255, 255]
+# [Saturation (0,100), Hue (0,360), Brightness (1,100), R, G, B]
+light_status = [0, 0, 0, 0, 0, 0]
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -37,7 +38,24 @@ def on_connect(client, userdata, flags, rc):
     strip_3.begin()
     strip_4.begin()
 
+    #Blackout
+    blackout(strip_odd)
+    blackout(strip_even)
+    blackout(strip_3)
+    blackout(strip_4)
+
     client.subscribe("shelf/#")
+
+    publish.single("shelf/report/status", 'false', hostname="localhost")
+    publish.single("shelf/report/brightness", '0', hostname="localhost")
+    publish.single("shelf/report/hue", '0', hostname="localhost")
+    publish.single("shelf/report/saturation", '0', hostname="localhost")
+
+def blackout(strip):
+    for i in range(max(strip.numPixels(), strip.numPixels())):
+        strip.setPixelColor(i, Color(0,0,0))
+        strip.setBrightness(0)
+        strip.show()
 
 def colorWipeNoShow(strip, color):
     """Wipe color across display a pixel at a time."""
